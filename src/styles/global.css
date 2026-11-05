@@ -87,3 +87,6 @@
 
 @keyframes drift { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .drift { animation: drift 40s linear infinite; transform-origin: 50% 50%; }
+
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.bob { animation: bob 5s ease-in-out infinite; }
