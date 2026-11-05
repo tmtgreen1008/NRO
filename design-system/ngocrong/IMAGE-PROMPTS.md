@@ -15,7 +15,7 @@ Vibrant stylized cartoon illustration, cel-shaded, clean bold shapes, soft rim l
 
 **Negative prompt (nếu công cụ có ô riêng):**
 ```
-text, letters, numbers, watermark, logo, signature, Dragon Ball, Goku, Shenron, Saiyan hair, any existing anime character, copyrighted character, blurry, low quality, extra fingers, deformed hands, cropped subject
+text, letters, numbers, watermark, logo, signature, Dragon Ball, Goku, Shenron, Saiyan hair, any existing anime character, copyrighted character, orange martial-arts gi, blue sash, blue wristbands, spiky black hair, seven spheres with red stars, blurry, low quality, extra fingers, deformed hands, cropped subject
 ```
 
 **Bắt buộc về bản quyền:** KHÔNG nhắc tên nhân vật/nhượng quyền có sẵn, không mô tả tóc vàng dựng đứng hay rồng thần. Nhân vật là **nhân vật gốc** do bạn sở hữu hình ảnh.
@@ -48,9 +48,22 @@ Tổng: 9 ảnh cốt lõi (1–9) + 4 ảnh phụ (10–13). Nên làm 1–7 tr
 
 Mỗi prompt = **Tiền tố chung** + nội dung dưới đây.
 
+### 0b. Hồ sơ nhân vật gốc (dán vào MỌI prompt có nhân vật để giữ nhất quán)
+
+> Tên làm việc: **Hạo** (bạn đổi tên tùy ý). Thiết kế cố ý KHÁC hoàn toàn với Dragon Ball: không áo gi cam, không đai/băng tay xanh, không tóc đen dựng đứng, không bảy viên ngọc sao đỏ.
+
+```
+CHARACTER: Hao, an original teenage adventurer. Short tousled silver-white hair swept to one side, a green-teal headband with a small gold clasp, warm amber eyes, light brown skin, confident grin. Outfit: a cream-colored short-sleeve tunic with deep teal trim and a gold geometric border, a crimson half-cape on one shoulder, dark brown leather arm guards, tapered dark teal trousers, light tan boots. Carries a slim bronze staff on his back. Lean athletic build.
+```
+
+**Vật phẩm gốc: "Ngọc Lam"** — 5 viên ngọc pha lê lục lam có vòng vàng xoắn, KHÔNG có sao, KHÔNG tròn trơn màu cam:
+```
+ORBS: five floating faceted turquoise crystal spheres, each wrapped by a thin glowing gold spiral ring, soft inner teal glow, no stars, no numbers, no markings, different sizes
+```
+
 ### 1. hero-main — Hero (4:3)
 ```
-An original young martial-arts hero with short dark swept-back hair, bright determined eyes, wearing an orange gi with a blue sash and a small gold emblem-free belt, standing in a powerful ready pose on a rocky cliff, a warm golden-white energy aura swirling around his fists, seen from a slight low angle. Behind him a huge sunrise sky with three small colorful planets (one blue, one green, one purple) and seven glowing orange spheres with red stars floating in an arc. Wind-blown scarf, drifting energy sparks, dramatic but friendly mood, subject centered with open sky around.
+Hao (see CHARACTER above) standing in a heroic low-angle pose on a rocky cliff edge at sunrise, a swirling aura of warm golden-white energy around his raised right hand, red half-cape and headband band fluttering in the wind. Behind him a huge glowing sunrise sky with three small colorful planets (one blue, one green, one purple), and five Ngoc Lam crystal orbs (see ORBS above) floating in a gentle arc around him. Rolling clouds below the cliff, drifting energy sparks, friendly adventurous mood, subject centered with open sky around.
 ```
 
 ### 2. planet-earth (16:9)
@@ -84,8 +97,9 @@ A cluster of large faceted crystal gems in sky blue, violet and pink floating in
 ```
 
 ### 8. og-image — chia sẻ mạng xã hội (16:9, nửa phải có chủ thể)
+Dùng ảnh hero làm ảnh tham chiếu (reference) để giữ cùng một nhân vật.
 ```
-The same original young martial-arts hero (short dark hair, orange gi, blue sash) in a dynamic flying pose on the right half of the image, warm golden energy trail behind him, seven glowing orange spheres with red stars arcing across a sunrise sky, left half left clean and calm with soft gradient sky for text overlay.
+Hao (see CHARACTER above) in a dynamic flying pose on the right half of the image, a golden energy trail behind him, red half-cape streaming, five Ngoc Lam turquoise crystal orbs (see ORBS above) arcing across a warm sunrise sky, left half kept clean and calm with a soft peach-to-sky gradient for text overlay.
 ```
 
 ### 9. topup-banner (21:9, nửa trái trống)
@@ -123,7 +137,8 @@ Thêm vào cuối prompt: `isolated on a plain cream background, single object c
 ## 5. Kiểm tra trước khi dùng
 
 - [ ] Không có chữ lạ, logo, dấu mờ trong ảnh.
-- [ ] Nhân vật không giống nhân vật có bản quyền (tóc, trang phục, đạo cụ).
+- [ ] Nhân vật không giống nhân vật có bản quyền (tóc, trang phục, đạo cụ). Kiểm: không tóc đen dựng đứng, không áo gi cam + đai xanh, không viên ngọc tròn cam có sao đỏ.
+- [ ] Nếu AI vẫn ra tóc dựng/áo cam: thêm vào negative prompt và tạo lại; đừng dùng ảnh đó.
 - [ ] Tay/ngón tay không bị méo; chủ thể không bị cắt.
 - [ ] Màu hòa với giao diện kem–cam, chữ đặt lên vẫn đạt contrast 4.5:1.
 - [ ] Kiểm tra điều khoản dùng thương mại của công cụ tạo ảnh bạn dùng.
