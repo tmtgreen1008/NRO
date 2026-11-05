@@ -5,10 +5,10 @@ import Footer from '../components/Footer.astro';
 import AuthCard from '../components/AuthCard.astro';
 import Field from '../components/Field.astro';
 ---
-<Base title="Đăng ký — Cộng đồng Ngọc Rồng" description="Tạo tài khoản trang cộng đồng (không phải tài khoản game).">
+<Base title="Đăng ký — Ngọc Rồng Online" description="Tạo tài khoản để nhận ưu đãi và nạp.">
   <SiteHeader />
   <main id="noi-dung">
-    <AuthCard id="form-dang-ky" title="Đăng ký" intro="Tạo tài khoản để tham gia cộng đồng." submitLabel="Tạo tài khoản">
+    <AuthCard id="form-dang-ky" title="Đăng ký" intro="Tạo tài khoản để nhận ưu đãi và theo dõi sự kiện." submitLabel="Tạo tài khoản">
       <Field id="ten" label="Tên hiển thị" autocomplete="nickname" minlength={2} hint="Tên mọi người sẽ thấy, ít nhất 2 ký tự." />
       <Field id="email" label="Email" type="email" autocomplete="email" rules="email" />
       <Field id="mat-khau" label="Mật khẩu" type="password" autocomplete="new-password" minlength={8} hint="Ít nhất 8 ký tự." />
@@ -17,7 +17,7 @@ import Field from '../components/Field.astro';
       <div class="field" data-field="dong-y">
         <label class="flex min-h-11 cursor-pointer items-start gap-3">
           <input id="dong-y" name="dong-y" type="checkbox" required aria-describedby="dong-y-error" class="mt-1 h-6 w-6 shrink-0 cursor-pointer accent-primary" />
-          <span>Tôi hiểu đây là trang cộng đồng không chính thức và không dùng chung mật khẩu với tài khoản game.</span>
+          <span>Tôi hiểu sẽ không chia sẻ mật khẩu cho bất kỳ ai.</span>
         </label>
         <p id="dong-y-error" class="mt-1 min-h-5 text-sm font-semibold text-destructive" data-error></p>
       </div>

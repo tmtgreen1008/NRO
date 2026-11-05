@@ -1,0 +1,23 @@
+---
+import EventArt from './art/EventArt.astro';
+import { statusLabel } from '../data/content';
+interface Props { event: { id: string; art: string; tag: string; title: string; range: string; status: string; short: string; rules?: readonly string[] }; detailed?: boolean }
+const { event: e, detailed = false } = Astro.props;
+const live = e.status === 'dang-dien-ra';
+---
+<article class="reveal overflow-hidden rounded-card border-2 border-foreground bg-card shadow-card">
+  <div class="relative border-b-2 border-foreground">
+    <EventArt kind={e.art as 'x2' | 'gift' | 'gem'} />
+    <span class:list={['absolute left-3 top-3 rounded-full border-2 border-foreground px-3 py-0.5 text-sm font-bold', live ? 'bg-accent text-foreground' : 'bg-card text-foreground']}>{statusLabel[e.status]}</span>
+  </div>
+  <div class="p-5">
+    <p class="text-sm font-bold text-muted-foreground">{e.tag} · {e.range}</p>
+    <h3 class="mt-1 text-2xl font-bold">{e.title}</h3>
+    <p class="mt-2 text-muted-foreground">{e.short}</p>
+    {detailed && e.rules && (
+      <ul class="mt-4 list-disc space-y-1 pl-5">
+        {e.rules.map((r) => <li>{r}</li>)}
+      </ul>
+    )}
+  </div>
+</article>

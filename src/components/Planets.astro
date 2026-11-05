@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import PlanetArt from './art/PlanetArt.astro';
 import { planets } from '../data/content';
 const bg: Record<string, string> = { earth: 'bg-earth', namek: 'bg-namek', xayda: 'bg-xayda' };
 ---
@@ -12,6 +13,7 @@ const bg: Record<string, string> = { earth: 'bg-earth', namek: 'bg-namek', xayda
       {planets.map((p, i) => (
         <button type="button" data-planet={p.id} aria-pressed={i === 0 ? 'true' : 'false'}
           class="planet-card reveal text-left rounded-card border-2 border-foreground bg-card shadow-card overflow-hidden transition-transform duration-200 hover:-translate-y-1 cursor-pointer aria-pressed:shadow-block aria-pressed:-translate-y-1">
+          <span class="block border-b-2 border-foreground"><PlanetArt kind={p.color as 'earth' | 'namek' | 'xayda'} /></span>
           <span class={`flex items-center gap-3 px-5 py-4 text-white ${bg[p.color]}`}>
             <Icon name="planet" class="w-9 h-9" />
             <span class="font-display text-2xl font-bold">{p.name}</span>

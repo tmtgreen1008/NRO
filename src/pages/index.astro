@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Planets from '../components/Planets.astro';
+import Promos from '../components/Promos.astro';
 import Onboarding from '../components/Onboarding.astro';
 import NewsCommunity from '../components/NewsCommunity.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -9,11 +10,12 @@ import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
 import { downloads } from '../data/links';
 ---
-<Base title="Cộng đồng Ngọc Rồng Online — Hướng dẫn tân thủ & link tải chính thức" description="Trang cộng đồng (không chính thức) giúp người mới chọn hành tinh, làm quen game và vào nhóm Zalo, Discord, Telegram.">
+<Base title="Ngọc Rồng Online — Tải game, sự kiện & ưu đãi" description="Tải Ngọc Rồng Online, chọn hành tinh, xem sự kiện ưu đãi mới nhất và hướng dẫn nạp an toàn.">
   <SiteHeader home />
 
   <main id="noi-dung">
     <Hero />
+    <Promos />
     <Planets />
     <Onboarding />
     <NewsCommunity />

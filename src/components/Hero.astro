@@ -5,15 +5,15 @@ import { downloads } from '../data/links';
 <section class="relative overflow-hidden border-b-2 border-foreground" style="background: linear-gradient(160deg, #fdba74 0%, #fde68a 100%);">
   <div class="container-x grid gap-8 py-12 md:grid-cols-2 md:items-center md:py-20 lg:py-24">
     <div>
-      <p class="inline-block rounded-full bg-card border-2 border-foreground px-3 py-1 text-sm font-bold">Cộng đồng người chơi Ngọc Rồng Online</p>
+      <p class="inline-block rounded-full bg-card border-2 border-foreground px-3 py-1 text-sm font-bold">Ngọc Rồng Online</p>
       <h1 class="mt-4 text-[2.25rem] font-bold sm:text-5xl lg:text-6xl">Bắt đầu hành trình Ngọc Rồng của bạn</h1>
-      <p class="mt-4 max-w-[34rem] text-lg">Chọn hành tinh, làm quen game trong vài bước và tìm bạn cùng chơi. Mọi link tải đều dẫn về nguồn chính thức.</p>
+      <p class="mt-4 max-w-[34rem] text-lg">Tải game, chọn hành tinh và nhận ưu đãi sự kiện mới nhất. Làm quen chỉ trong vài bước.</p>
 
       <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a id="dl-main" href={downloads.pc.url} class="btn btn-primary" data-android={downloads.android.url} data-ios={downloads.ios.url} data-pc={downloads.pc.url} target="_blank" rel="noopener noreferrer">
           <Icon name="download" /> <span id="dl-label">Tải game</span>
         </a>
-        <a href="#tan-thu" class="btn btn-secondary bg-card">Xem hướng dẫn tân thủ</a>
+        <a href="#uu-dai" class="btn btn-secondary bg-card">Xem ưu đãi</a>
       </div>
       <p id="dl-note" class="mt-3 min-h-6 text-sm font-semibold" role="status" aria-live="polite"></p>
 
@@ -68,7 +68,7 @@ import { downloads } from '../data/links';
   document.querySelectorAll<HTMLAnchorElement>('a[href="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      if (note) note.textContent = 'Link chính thức sẽ được cập nhật sớm. Hãy chỉ tải từ nguồn chính thức.';
+      if (note) note.textContent = 'Link tải sẽ được cập nhật sớm.';
     });
   });
 </script>
