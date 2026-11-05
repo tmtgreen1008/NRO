@@ -26,7 +26,7 @@ export const steps = [
 
 export const faqs = [
   { q: 'Trang này có phải trang chính thức không?', a: 'Không. Đây là trang cộng đồng do người hâm mộ lập. Chúng tôi không phát hành game và không quản lý tài khoản của bạn.' },
-  { q: 'Tôi có phải đưa mật khẩu hoặc nạp tiền ở đây không?', a: 'Không bao giờ. Trang này không hỏi mật khẩu và không nhận nạp tiền. Mọi giao dịch chỉ thực hiện trong game chính thức.' },
+  { q: 'Tôi có phải đưa mật khẩu game hoặc nạp tiền ở đây không?', a: 'Không bao giờ. Trang này không hỏi mật khẩu tài khoản game và không nhận nạp tiền. Tài khoản trên trang chỉ dành cho cộng đồng, hãy dùng mật khẩu khác với game. Mọi giao dịch chỉ thực hiện trong game chính thức.' },
   { q: 'Tải game ở đâu cho an toàn?', a: 'Nút "Tải game" chỉ dẫn về nguồn chính thức. Tránh file cài đặt từ link lạ hoặc nhóm chat.' },
   { q: 'Máy tôi chạy được không?', a: 'Hỗ trợ Android, iPhone/iPad và Windows 10 trở lên. Các thiết bị rất cũ không còn được hỗ trợ.' },
   { q: 'Nên chọn hành tinh nào lúc đầu?', a: 'Chưa chắc thì chọn Trái Đất. Bạn có thể thử các hành tinh khác bằng nhân vật mới sau.' },

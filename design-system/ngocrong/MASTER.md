@@ -105,3 +105,13 @@ Nút tải lặp lại dạng sticky bar đáy trên mobile (ẩn khi hero đang
 - [ ] `prefers-reduced-motion` được tôn trọng
 - [ ] 375/768/1024/1440 không vỡ bố cục, không cuộn ngang
 - [ ] Dấu tiếng Việt hiển thị đúng
+
+---
+
+## 11. Đăng ký / Đăng nhập (giao diện — chưa có backend)
+
+- Là tài khoản của **trang cộng đồng**, KHÔNG phải tài khoản game. Mỗi form có khung "Lưu ý" nhắc không dùng mật khẩu game; trang đăng ký có ô tích xác nhận.
+- Hiện **chưa gửi dữ liệu đi đâu**: submit chỉ kiểm tra hợp lệ rồi báo "đang được xây dựng". Điểm nối backend: `AuthCard.astro` (comment "GIAO DIỆN MẪU").
+- Khi làm backend: ưu tiên đăng nhập OAuth (Discord/Google); nếu tự lưu mật khẩu thì dùng argon2/bcrypt, HTTPS, giới hạn thử, và phải có chính sách quyền riêng tư.
+- Form: nhãn luôn hiển thị (không dùng placeholder thay nhãn), lỗi ngay dưới ô + tóm tắt `role="alert"`, tự focus ô lỗi đầu tiên, nút Hiện/Ẩn mật khẩu, `autocomplete` đúng (`email`, `current-password`, `new-password`), ô nhập cao ≥52px, `novalidate` + kiểm tra bằng JS (thông báo tiếng Việt).
+- Header: "Đăng nhập" (link) + "Đăng ký" (nút) hiển thị ở mọi cỡ màn hình.

@@ -1,0 +1,28 @@
+---
+interface Props {
+  id: string; label: string; type?: string; autocomplete?: string;
+  hint?: string; rules?: string; match?: string; minlength?: number; required?: boolean;
+}
+const { id, label, type = 'text', autocomplete, hint, rules = '', match, minlength, required = true } = Astro.props;
+const isPw = type === 'password';
+const describedBy = [hint ? `${id}-hint` : '', `${id}-error`].filter(Boolean).join(' ');
+---
+<div class="field" data-field={id}>
+  <label for={id} class="block font-bold">{label}{!required && <span class="font-normal text-muted-foreground"> (không bắt buộc)</span>}</label>
+  {hint && <p id={`${id}-hint`} class="mt-0.5 text-sm text-muted-foreground">{hint}</p>}
+  <div class="relative mt-1.5">
+    <input
+      id={id} name={id} type={type} autocomplete={autocomplete}
+      data-rules={rules} data-match={match} minlength={minlength}
+      required={required} aria-describedby={describedBy}
+      class:list={['block min-h-[52px] w-full rounded-btn border-2 border-foreground bg-card px-4 text-base text-foreground aria-[invalid=true]:border-destructive aria-[invalid=true]:bg-[#fef2f2]', isPw && 'pr-24']}
+    />
+    {isPw && (
+      <button type="button" data-toggle-pw={id} aria-controls={id} aria-pressed="false"
+        class="absolute right-1.5 top-1/2 min-h-11 -translate-y-1/2 cursor-pointer rounded-btn px-3 text-sm font-bold text-secondary hover:underline">
+        Hiện
+      </button>
+    )}
+  </div>
+  <p id={`${id}-error`} class="mt-1 min-h-5 text-sm font-semibold text-destructive" data-error></p>
+</div>

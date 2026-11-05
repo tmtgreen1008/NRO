@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+import AuthCard from '../components/AuthCard.astro';
+import Field from '../components/Field.astro';
+---
+<Base title="Đăng nhập — Cộng đồng Ngọc Rồng" description="Đăng nhập tài khoản trang cộng đồng (không phải tài khoản game).">
+  <SiteHeader />
+  <main id="noi-dung">
+    <AuthCard id="form-dang-nhap" title="Đăng nhập" intro="Chào mừng bạn quay lại cộng đồng." submitLabel="Đăng nhập">
+      <Field id="email" label="Email" type="email" autocomplete="email" rules="email" />
+      <Field id="mat-khau" label="Mật khẩu" type="password" autocomplete="current-password" />
+      <p slot="switch">Chưa có tài khoản? <a class="font-bold text-secondary underline underline-offset-2" href="/dang-ky">Đăng ký</a></p>
+    </AuthCard>
+  </main>
+  <Footer />
+</Base>
