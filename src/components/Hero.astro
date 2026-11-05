@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { downloads } from '../data/links';
+---
+<section class="relative overflow-hidden border-b-2 border-foreground" style="background: linear-gradient(160deg, #fdba74 0%, #fde68a 100%);">
+  <div class="container-x grid gap-8 py-12 md:grid-cols-2 md:items-center md:py-20 lg:py-24">
+    <div>
+      <p class="inline-block rounded-full bg-card border-2 border-foreground px-3 py-1 text-sm font-bold">Cộng đồng người chơi Ngọc Rồng Online</p>
+      <h1 class="mt-4 text-[2.25rem] font-bold sm:text-5xl lg:text-6xl">Bắt đầu hành trình Ngọc Rồng của bạn</h1>
+      <p class="mt-4 max-w-[34rem] text-lg">Chọn hành tinh, làm quen game trong vài bước và tìm bạn cùng chơi. Mọi link tải đều dẫn về nguồn chính thức.</p>
+
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <a id="dl-main" href={downloads.pc.url} class="btn btn-primary" data-android={downloads.android.url} data-ios={downloads.ios.url} data-pc={downloads.pc.url} target="_blank" rel="noopener noreferrer">
+          <Icon name="download" /> <span id="dl-label">Tải game</span>
+        </a>
+        <a href="#tan-thu" class="btn btn-secondary bg-card">Xem hướng dẫn tân thủ</a>
+      </div>
+      <p id="dl-note" class="mt-3 min-h-6 text-sm font-semibold" role="status" aria-live="polite"></p>
+
+      <p class="mt-1 text-sm text-muted-foreground">
+        Nền tảng khác:{' '}
+        <a class="font-bold text-foreground underline underline-offset-2" href={downloads.android.url}>Android</a> ·
+        <a class="font-bold text-foreground underline underline-offset-2" href={downloads.ios.url}>iPhone</a> ·
+        <a class="font-bold text-foreground underline underline-offset-2" href={downloads.pc.url}>Windows</a>
+      </p>
+    </div>
+
+    <div class="mx-auto w-full max-w-md md:max-w-none" aria-hidden="true">
+      <svg viewBox="0 0 400 400" class="w-full h-auto" role="img" focusable="false">
+        <g class="drift" style="transform-box: fill-box;">
+          <g stroke="#2a1708" stroke-width="3" stroke-linecap="round" opacity=".18">
+            <path d="M200 20v50M200 330v50M20 200h50M330 200h50M73 73l35 35M292 292l35 35M327 73l-35 35M108 292l-35 35"/>
+          </g>
+        </g>
+        <circle cx="200" cy="200" r="120" fill="#fbbf24" stroke="#2a1708" stroke-width="4"/>
+        <circle cx="200" cy="200" r="120" fill="url(#shine)"/>
+        <defs><radialGradient id="shine" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+        <g fill="#c2410c" stroke="#2a1708" stroke-width="3" stroke-linejoin="round">
+          <path d="M200 140l12 25 27 4-20 19 5 27-24-13-24 13 5-27-20-19 27-4z"/>
+          <path d="M150 230l6 12 13 2-10 9 2 13-11-6-11 6 2-13-10-9 13-2z" transform="translate(30 4)"/>
+          <path d="M150 230l6 12 13 2-10 9 2 13-11-6-11 6 2-13-10-9 13-2z" transform="translate(94 4)"/>
+        </g>
+        <circle cx="70" cy="90" r="30" fill="#0369a1" stroke="#2a1708" stroke-width="4"/>
+        <path d="M45 85q25 15 50 0" stroke="#fff" stroke-width="4" fill="none" opacity=".6"/>
+        <circle cx="335" cy="120" r="24" fill="#15803d" stroke="#2a1708" stroke-width="4"/>
+        <circle cx="325" cy="132" r="5" fill="#fff" opacity=".6"/>
+        <circle cx="325" cy="320" r="28" fill="#7e22ce" stroke="#2a1708" stroke-width="4"/>
+        <ellipse cx="325" cy="320" rx="46" ry="9" fill="none" stroke="#2a1708" stroke-width="4"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.getElementById('dl-main') as HTMLAnchorElement | null;
+  const label = document.getElementById('dl-label');
+  const note = document.getElementById('dl-note');
+  if (btn && label) {
+    const ua = navigator.userAgent;
+    const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(ua);
+    const d = btn.dataset;
+    if (isAndroid) { btn.href = d.android!; label.textContent = 'Tải cho Android'; }
+    else if (isIOS) { btn.href = d.ios!; label.textContent = 'Tải cho iPhone'; }
+    else if (/Windows/i.test(ua)) { btn.href = d.pc!; label.textContent = 'Tải cho Windows'; }
+  }
+  // Link chưa cấu hình: báo rõ thay vì dẫn đi đâu đó
+  document.querySelectorAll<HTMLAnchorElement>('a[href="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (note) note.textContent = 'Link chính thức sẽ được cập nhật sớm. Hãy chỉ tải từ nguồn chính thức.';
+    });
+  });
+</script>

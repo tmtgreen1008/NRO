@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "@fontsource/baloo-2/latin-600.css";
+@import "@fontsource/baloo-2/latin-700.css";
+@import "@fontsource/baloo-2/latin-ext-700.css";
+@import "@fontsource/baloo-2/vietnamese-600.css";
+@import "@fontsource/baloo-2/vietnamese-700.css";
+@import "@fontsource-variable/nunito/wght.css";
+
+@theme {
+  --font-display: "Baloo 2", "Nunito Variable", system-ui, sans-serif;
+  --font-sans: "Nunito Variable", system-ui, sans-serif;
+
+  --color-background: #fff8ec;
+  --color-foreground: #2a1708;
+  --color-card: #ffffff;
+  --color-muted-foreground: #5b4636;
+  --color-border: #f2d9b3;
+  --color-primary: #c2410c;
+  --color-on-primary: #ffffff;
+  --color-secondary: #0369a1;
+  --color-accent: #fbbf24;
+  --color-footer: #2a1708;
+  --color-footer-text: #fde9c8;
+  --color-destructive: #b91c1c;
+  --color-ring: #0369a1;
+  --color-earth: #0369a1;
+  --color-namek: #15803d;
+  --color-xayda: #7e22ce;
+
+  --radius-btn: 14px;
+  --radius-card: 20px;
+  --shadow-block: 0 4px 0 rgba(42, 23, 8, 0.9);
+  --shadow-card: 0 8px 24px rgba(42, 23, 8, 0.12);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  @media (min-width: 768px) { body { font-size: 1.125rem; } }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
+  :focus-visible { outline: 3px solid var(--color-ring); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 52px; padding: 0 1.75rem;
+    border: 2px solid var(--color-foreground);
+    border-radius: var(--radius-btn);
+    font-weight: 700; font-size: 1.0625rem; white-space: nowrap;
+    text-decoration: none; cursor: pointer;
+    transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+  }
+  .btn-primary {
+    background: var(--color-primary); color: var(--color-on-primary);
+    box-shadow: var(--shadow-block);
+  }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(42,23,8,.9); }
+  .btn-secondary {
+    background: transparent; color: var(--color-secondary); border-color: var(--color-secondary);
+  }
+  .btn-secondary:hover { background: color-mix(in srgb, var(--color-secondary) 10%, transparent); }
+  .section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; }
+  .container-x { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 768px) { .container-x { padding-inline: 1.5rem; } }
+}
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 400ms ease-out, transform 400ms ease-out; }
+.reveal.in { opacity: 1; transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+@keyframes drift { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.drift { animation: drift 40s linear infinite; transform-origin: 50% 50%; }

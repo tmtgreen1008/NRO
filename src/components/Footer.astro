@@ -1,0 +1,27 @@
+---
+import Icon from './Icon.astro';
+import { license } from '../data/links';
+---
+<footer class="bg-footer text-footer-text">
+  <div class="container-x py-12 pb-28 md:pb-12">
+    <div class="rounded-card border-2 border-accent p-5" role="note" aria-label="Cảnh báo sức khỏe">
+      <p class="flex items-start gap-3 text-base font-bold md:text-lg">
+        <Icon name="warn" class="mt-1 h-6 w-6 shrink-0 text-accent" />
+        <span>Chơi quá 180 phút một ngày sẽ ảnh hưởng xấu đến sức khỏe. Hãy nghỉ ngơi và cân bằng việc học, làm.</span>
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-6 text-sm md:grid-cols-2 md:text-base">
+      <div>
+        <p class="font-display text-xl font-bold text-white">Trang cộng đồng, không phải trang chính thức</p>
+        <p class="mt-2">Đây là trang do người hâm mộ lập. Chúng tôi không phát hành game, không thu mật khẩu và không nhận nạp tiền. Link tải chỉ dẫn về nguồn chính thức.</p>
+      </div>
+      <div>
+        <p class="font-bold text-white">Thông tin giấy phép game</p>
+        <p class="mt-2">Số quyết định: {license.decision}</p>
+        <p>Đơn vị phát hành: {license.publisher}</p>
+        <p class="mt-3">Tên game, nhân vật và thương hiệu thuộc về chủ sở hữu tương ứng. Hình minh họa trên trang này do cộng đồng tự vẽ.</p>
+      </div>
+    </div>
+  </div>
+</footer>
