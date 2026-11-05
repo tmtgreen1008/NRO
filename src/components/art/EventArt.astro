@@ -1,57 +1,9 @@
 ---
 interface Props { kind: 'x2' | 'gift' | 'gem'; class?: string }
 const { kind, class: cls = '' } = Astro.props;
-const id = `ea-${kind}`;
-const bg: Record<string, [string, string]> = {
-  x2: ['#fdba74', '#fde68a'],
-  gift: ['#fbcfe8', '#fde68a'],
-  gem: ['#bae6fd', '#e9d5ff'],
-};
-const [c1, c2] = bg[kind];
 ---
-<svg viewBox="0 0 600 300" class={`block w-full h-auto ${cls}`} aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <linearGradient id={`${id}-bg`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color={c1}/><stop offset="1" stop-color={c2}/></linearGradient>
-    <radialGradient id={`${id}-glow`} cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-  </defs>
-  <rect width="600" height="300" fill={`url(#${id}-bg)`}/>
-  <circle cx="300" cy="150" r="170" fill={`url(#${id}-glow)`}/>
-  <g stroke="#2a1708" stroke-width="3" stroke-linecap="round" opacity=".12">
-    <path d="M300 10v40M300 250v40M10 150h40M550 150h40M70 40l28 28M502 232l28 28M530 40l-28 28M98 232l-28 28"/>
-  </g>
-  <g fill="#fff" opacity=".9">
-    <path d="M70 60l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/><path d="M520 70l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/><path d="M110 230l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/><path d="M500 220l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/>
-  </g>
-
-  {kind === 'x2' && (<>
-    <g stroke="#2a1708" stroke-width="5" stroke-linejoin="round">
-      <circle cx="300" cy="150" r="96" fill="#c2410c"/>
-      <circle cx="300" cy="150" r="76" fill="#fbbf24"/>
-    </g>
-    <text x="300" y="178" text-anchor="middle" font-family="'Baloo 2', system-ui, sans-serif" font-weight="700" font-size="92" fill="#2a1708">x2</text>
-    <g stroke="#2a1708" stroke-width="4"><circle cx="132" cy="206" r="30" fill="#fbbf24"/><circle cx="470" cy="96" r="24" fill="#fbbf24"/></g>
-    <g fill="#c2410c" font-family="'Baloo 2', system-ui, sans-serif" font-weight="700" font-size="30" text-anchor="middle"><text x="132" y="217">$</text><text x="470" y="106" font-size="24">$</text></g>
-  </>)}
-
-  {kind === 'gift' && (<>
-    <g stroke="#2a1708" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-      <rect x="205" y="140" width="190" height="120" rx="10" fill="#c2410c"/>
-      <rect x="190" y="108" width="220" height="50" rx="10" fill="#ea580c"/>
-      <rect x="276" y="108" width="48" height="152" fill="#fbbf24"/>
-      <path d="M300 108 C250 40 190 70 250 108 Z" fill="#fbbf24"/>
-      <path d="M300 108 C350 40 410 70 350 108 Z" fill="#fbbf24"/>
-    </g>
-    <g fill="#fff" opacity=".35"><rect x="215" y="150" width="14" height="100" rx="6"/></g>
-  </>)}
-
-  {kind === 'gem' && (<>
-    <g stroke="#2a1708" stroke-width="5" stroke-linejoin="round">
-      <path d="M300 60 L380 130 L300 250 L220 130Z" fill="#38bdf8"/>
-      <path d="M220 130 H380" fill="none"/>
-      <path d="M300 60 L270 130 L300 250 L330 130Z" fill="#7dd3fc"/>
-      <path d="M150 170 L190 205 L150 255 L110 205Z" fill="#a78bfa"/>
-      <path d="M450 150 L485 182 L450 228 L415 182Z" fill="#f472b6"/>
-    </g>
-    <path d="M285 85 L255 128" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
-  </>)}
-</svg>
+<img
+  src={`/images/event-${kind}.webp`}
+  width="1200" height="600" alt="" loading="lazy" decoding="async"
+  class={`block h-auto w-full ${cls}`}
+/>
