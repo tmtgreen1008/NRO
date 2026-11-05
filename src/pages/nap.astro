@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { topupTiers, topupSteps, eventsAreSample } from '../data/content';
+import { topupUrl, supportUrl } from '../data/links';
+---
+<Base title="Hướng dẫn nạp — Ngọc Rồng Online" description="Bảng gói nạp, ưu đãi và các bước nạp an toàn cho người chơi Ngọc Rồng Online.">
+  <SiteHeader />
+  <main id="noi-dung" class="py-12 md:py-16">
+    <div class="container-x">
+      <h1 class="text-4xl font-bold md:text-5xl">Hướng dẫn nạp</h1>
+      <p class="mt-3 max-w-2xl text-muted-foreground">Nạp theo các bước dưới đây. Chỉ nạp qua trang này và kênh hỗ trợ được công bố.</p>
+
+      <div class="mt-6 flex items-start gap-3 rounded-card border-2 border-accent bg-[#fffbeb] p-5" role="note">
+        <Icon name="warn" class="mt-0.5 h-6 w-6 shrink-0 text-foreground" />
+        <p><strong>Cảnh báo lừa đảo:</strong> quản trị viên không bao giờ hỏi mật khẩu hoặc mã OTP, và không nhận nạp qua tin nhắn riêng. Hãy chỉ giao dịch qua trang này.</p>
+      </div>
+
+      <h2 class="section-title mt-12">4 bước nạp</h2>
+      <ol class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {topupSteps.map((s, i) => (
+          <li class="reveal rounded-card border-2 border-border bg-card p-5">
+            <span class="flex items-center justify-between">
+              <span class="grid h-12 w-12 place-items-center rounded-full border-2 border-foreground bg-accent"><Icon name={s.icon} /></span>
+              <span class="font-display text-3xl font-bold text-muted-foreground" aria-hidden="true">{i + 1}</span>
+            </span>
+            <h3 class="mt-3 text-xl font-bold"><span class="sr-only">Bước {i + 1}: </span>{s.title}</h3>
+            <p class="mt-1 text-base text-muted-foreground">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+
+      <h2 class="section-title mt-14">Bảng gói nạp</h2>
+      {eventsAreSample && <p class="mt-3 rounded-btn border-2 border-dashed border-destructive px-4 py-2 text-sm font-bold text-destructive">Số liệu mẫu: thay bằng bảng giá thật trước khi đăng.</p>}
+      <div class="mt-5 overflow-x-auto rounded-card border-2 border-foreground bg-card">
+        <table class="w-full text-left">
+          <caption class="sr-only">Mệnh giá nạp, số ngọc nhận được và ưu đãi</caption>
+          <thead class="bg-accent text-foreground">
+            <tr><th scope="col" class="px-3 py-3 sm:px-5">Mệnh giá</th><th scope="col" class="px-3 py-3 sm:px-5">Nhận được</th><th scope="col" class="px-3 py-3 sm:px-5">Ưu đãi</th></tr>
+          </thead>
+          <tbody>
+            {topupTiers.map((t) => (
+              <tr class="border-t-2 border-border">
+                <th scope="row" class="px-3 py-3 sm:px-5 font-bold">{t.amount}</th>
+                <td class="px-3 py-3 sm:px-5">{t.gem}</td>
+                <td class="px-3 py-3 sm:px-5 font-bold text-namek">{t.bonus || '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={topupUrl} class="btn btn-primary" id="topup-go">Nạp ngay</a>
+        <a href={supportUrl} class="btn btn-secondary bg-card">Liên hệ hỗ trợ</a>
+        <a href="/dang-nhap" class="btn btn-secondary bg-card">Đăng nhập để nạp</a>
+      </div>
+      <p id="topup-note" role="status" aria-live="polite" class="mt-3 min-h-6 text-sm font-semibold"></p>
+    </div>
+  </main>
+  <Footer />
+  <script>
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#"]').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const n = document.getElementById('topup-note');
+      if (n) n.textContent = 'Tính năng này sẽ sớm được mở. Hiện chưa có giao dịch nào được thực hiện.';
+    }));
+  </script>
+</Base>

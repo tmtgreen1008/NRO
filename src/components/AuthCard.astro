@@ -1,0 +1,90 @@
+---
+interface Props { title: string; intro: string; submitLabel: string; id: string }
+const { title, intro, submitLabel, id } = Astro.props;
+---
+<section class="py-10 md:py-16">
+  <div class="container-x">
+    <div class="mx-auto max-w-md rounded-card border-2 border-foreground bg-card p-6 shadow-card md:p-8">
+      <h1 class="text-3xl font-bold md:text-4xl">{title}</h1>
+      <p class="mt-2 text-muted-foreground">{intro}</p>
+
+      <p class="mt-5 rounded-btn border-2 border-accent bg-[#fffbeb] p-4 text-base" role="note">
+        <strong>Lưu ý:</strong> Không chia sẻ mật khẩu cho bất kỳ ai, kể cả người tự xưng là quản trị viên. Chúng tôi <strong>không bao giờ</strong> hỏi mật khẩu hay mã OTP của bạn.
+      </p>
+
+      <form id={id} novalidate data-auth class="mt-6 space-y-4">
+        <div role="alert" aria-live="assertive" data-summary class="hidden rounded-btn border-2 border-destructive bg-[#fef2f2] p-3 font-semibold text-destructive"></div>
+        <slot />
+        <button type="submit" class="btn btn-primary w-full">{submitLabel}</button>
+        <p data-status role="status" aria-live="polite" class="min-h-6 text-center text-sm font-semibold text-muted-foreground"></p>
+      </form>
+
+      <div class="mt-4 border-t-2 border-border pt-4 text-center">
+        <slot name="switch" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function messageFor(input: HTMLInputElement, form: HTMLFormElement): string {
+    const rules = (input.dataset.rules || '').split(' ').filter(Boolean);
+    const v = input.value.trim();
+    const label = form.querySelector<HTMLLabelElement>(`label[for="${input.id}"]`)?.firstChild?.textContent?.trim() || 'Trường này';
+    if (input.type === 'checkbox') return input.checked ? '' : 'Bạn cần đồng ý để tiếp tục.';
+    if (input.required && !v) return `Ô "${label}" đang để trống.`;
+    if (rules.includes('email') && v && !EMAIL.test(v)) return 'Email chưa đúng định dạng, ví dụ ten@email.com.';
+    if (input.minLength > 0 && input.value && input.value.length < input.minLength) return `${label} cần ít nhất ${input.minLength} ký tự.`;
+    if (input.dataset.match) {
+      const other = form.querySelector<HTMLInputElement>('#' + input.dataset.match);
+      if (other && input.value !== other.value) return 'Hai mật khẩu chưa khớp nhau.';
+    }
+    return '';
+  }
+
+  function show(input: HTMLInputElement, msg: string) {
+    const err = document.getElementById(input.id + '-error');
+    if (err) err.textContent = msg;
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+
+  document.querySelectorAll<HTMLFormElement>('form[data-auth]').forEach((form) => {
+    const inputs = [...form.querySelectorAll<HTMLInputElement>('input')];
+    const summary = form.querySelector<HTMLElement>('[data-summary]')!;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+
+    inputs.forEach((i) => {
+      i.addEventListener('blur', () => { if (i.value || i.getAttribute('aria-invalid') === 'true') show(i, messageFor(i, form)); });
+      i.addEventListener('input', () => { if (i.getAttribute('aria-invalid') === 'true') show(i, messageFor(i, form)); });
+    });
+
+    form.querySelectorAll<HTMLButtonElement>('[data-toggle-pw]').forEach((b) => {
+      b.addEventListener('click', () => {
+        const t = document.getElementById(b.dataset.togglePw!) as HTMLInputElement;
+        const hide = t.type === 'text';
+        t.type = hide ? 'password' : 'text';
+        b.textContent = hide ? 'Hiện' : 'Ẩn';
+        b.setAttribute('aria-pressed', String(!hide));
+        b.setAttribute('aria-label', hide ? 'Hiện mật khẩu' : 'Ẩn mật khẩu');
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      const bad = inputs.filter((i) => { const m = messageFor(i, form); show(i, m); return !!m; });
+      if (bad.length) {
+        summary.textContent = `Có ${bad.length} mục cần sửa. Vui lòng kiểm tra các ô được đánh dấu.`;
+        summary.classList.remove('hidden');
+        bad[0].focus();
+        return;
+      }
+      summary.classList.add('hidden');
+      summary.textContent = '';
+      // GIAO DIỆN MẪU: chưa gửi dữ liệu đi đâu. Nối backend tại đây.
+      status.textContent = 'Biểu mẫu hợp lệ. Tính năng này đang được xây dựng nên chưa có tài khoản nào được tạo.';
+    });
+  });
+</script>

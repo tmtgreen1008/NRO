@@ -2,30 +2,20 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Planets from '../components/Planets.astro';
+import Promos from '../components/Promos.astro';
 import Onboarding from '../components/Onboarding.astro';
 import NewsCommunity from '../components/NewsCommunity.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
 import { downloads } from '../data/links';
 ---
-<Base title="Cộng đồng Ngọc Rồng Online — Hướng dẫn tân thủ & link tải chính thức" description="Trang cộng đồng (không chính thức) giúp người mới chọn hành tinh, làm quen game và vào nhóm Zalo, Discord, Telegram.">
-  <div class="bg-foreground px-4 py-2 text-center text-sm font-semibold text-footer-text">
-    Trang cộng đồng, không phải trang chính thức. Không bao giờ yêu cầu mật khẩu hay nạp tiền.
-  </div>
-  <header class="border-b-2 border-foreground bg-background">
-    <nav class="container-x flex min-h-14 items-center justify-between gap-4" aria-label="Điều hướng chính">
-      <a href="/" class="inline-flex min-h-11 items-center font-display text-xl font-bold no-underline">Ngọc Rồng · Cộng đồng</a>
-      <ul class="hidden items-center gap-6 font-bold md:flex">
-        <li><a class="inline-flex min-h-11 items-center hover:underline underline-offset-4" href="#hanh-tinh">Hành tinh</a></li>
-        <li><a class="inline-flex min-h-11 items-center hover:underline underline-offset-4" href="#tan-thu">Tân thủ</a></li>
-        <li><a class="inline-flex min-h-11 items-center hover:underline underline-offset-4" href="#faq">Hỏi đáp</a></li>
-        <li><a class="inline-flex min-h-11 items-center hover:underline underline-offset-4" href="#cong-dong">Cộng đồng</a></li>
-      </ul>
-    </nav>
-  </header>
+<Base title="Ngọc Rồng Online — Tải game, sự kiện & ưu đãi" description="Tải Ngọc Rồng Online, chọn hành tinh, xem sự kiện ưu đãi mới nhất và hướng dẫn nạp an toàn.">
+  <SiteHeader home />
 
   <main id="noi-dung">
     <Hero />
+    <Promos />
     <Planets />
     <Onboarding />
     <NewsCommunity />

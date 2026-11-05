@@ -1,0 +1,23 @@
+---
+import EventCard from './EventCard.astro';
+import { events, eventsAreSample } from '../data/content';
+---
+<section id="uu-dai" class="border-y-2 border-foreground bg-card py-16 md:py-24">
+  <div class="container-x">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="section-title reveal">Ưu đãi &amp; sự kiện nổi bật</h2>
+        <p class="reveal mt-2 max-w-2xl text-muted-foreground">Cập nhật thường xuyên. Đọc kỹ thể lệ trước khi tham gia.</p>
+      </div>
+      <a href="/su-kien" class="btn btn-secondary bg-card reveal">Xem tất cả sự kiện</a>
+    </div>
+    {eventsAreSample && <p class="mt-4 rounded-btn border-2 border-dashed border-destructive px-4 py-2 text-sm font-bold text-destructive">Nội dung mẫu: thay bằng sự kiện thật trước khi đăng.</p>}
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {events.map((e) => <EventCard event={e} />)}
+    </div>
+    <div class="reveal mt-8 flex flex-wrap items-center gap-4 rounded-card border-2 border-foreground bg-background p-5">
+      <p class="flex-1 text-lg font-bold">Muốn nhận ưu đãi? Xem bảng gói nạp và các bước thực hiện.</p>
+      <a href="/nap" class="btn btn-primary">Xem hướng dẫn nạp</a>
+    </div>
+  </div>
+</section>

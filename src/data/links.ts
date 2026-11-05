@@ -5,6 +5,10 @@ export const downloads = {
   pc: { label: 'Windows 10 trở lên', url: '#' },
 } as const;
 
+// Địa chỉ trang thanh toán/nạp của bạn (cổng thanh toán). Để "#" nếu chưa có.
+export const topupUrl = '#';
+export const supportUrl = '#';
+
 export const community = [
   { id: 'zalo', name: 'Zalo', desc: 'Nhóm chat nhanh, hỏi đáp mỗi ngày.', url: '#' },
   { id: 'discord', name: 'Discord', desc: 'Voice, tìm đồng đội, theo dõi sự kiện.', url: '#' },

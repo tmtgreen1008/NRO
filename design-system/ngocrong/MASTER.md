@@ -10,12 +10,14 @@
 
 ## 1. Vai trò & ràng buộc nội dung (BẮT BUỘC)
 
-- Trang **cộng đồng/fan, KHÔNG phải trang chính thức**. Dòng này nằm ở header-banner nhỏ và footer.
-- **Không** thu mật khẩu, tài khoản, nạp tiền/thẻ. Không có form đăng nhập.
-- Nút "Tải game" chỉ trỏ về **nguồn chính thức** (URL cấu hình trong một file `src/data/links.ts`, mặc định placeholder `#` + cảnh báo "cập nhật link chính thức").
-- Footer giữ nguyên: cảnh báo **chơi quá 180 phút/ngày không tốt cho sức khỏe** + thông tin giấy phép (số QĐ, đơn vị phát hành điền từ nguồn chính thức, không bịa).
-- Không dùng logo/ảnh/GIF/tên-tài-sản của trang gốc. Minh họa = SVG tự vẽ. Ghi "Ngọc Rồng Online" như tên game để chỉ dẫn, kèm disclaimer thương hiệu thuộc chủ sở hữu.
-- Bỏ hướng dẫn lỗi thời (Nokia/Java, Windows Phone, XP/7). Nền tảng hỗ trợ: Android, iOS, PC (Windows 10+).
+> Cập nhật 2026-11-05: trang do **chủ/vận hành game** dùng (không còn là trang fan). Các điều khoản "trang cộng đồng, không chính thức" đã bỏ.
+
+- Trang cung cấp thông tin **sự kiện, ưu đãi** và hướng dẫn **nạp**. Chưa có xử lý thanh toán thật (cần backend + cổng thanh toán).
+- Mọi nội dung sự kiện / bảng giá hiện là **dữ liệu mẫu** (`eventsAreSample = true` trong `src/data/content.ts`), có nhãn đỏ gạch nét đứt. Phải thay bằng dữ liệu thật rồi đặt cờ về `false` trước khi đăng.
+- Luôn hiển thị cảnh báo chống lừa đảo: quản trị viên không hỏi mật khẩu/OTP, không nhận nạp qua tin nhắn riêng.
+- Footer giữ nguyên: cảnh báo chơi quá **180 phút/ngày** + thông tin giấy phép (điền số quyết định và đơn vị phát hành thật, không bịa).
+- Minh họa = SVG tự vẽ (`src/components/art/`), không dùng tài sản của trang gốc hay Dragon Ball.
+- Hỗ trợ: Android, iOS, Windows 10+. Không hướng dẫn Nokia/Java, Windows Phone, XP/7.
 
 ## 2. Phong cách
 
@@ -105,3 +107,13 @@ Nút tải lặp lại dạng sticky bar đáy trên mobile (ẩn khi hero đang
 - [ ] `prefers-reduced-motion` được tôn trọng
 - [ ] 375/768/1024/1440 không vỡ bố cục, không cuộn ngang
 - [ ] Dấu tiếng Việt hiển thị đúng
+
+---
+
+## 11. Đăng ký / Đăng nhập (giao diện — chưa có backend)
+
+- Là tài khoản của **trang cộng đồng**, KHÔNG phải tài khoản game. Mỗi form có khung "Lưu ý" nhắc không dùng mật khẩu game; trang đăng ký có ô tích xác nhận.
+- Hiện **chưa gửi dữ liệu đi đâu**: submit chỉ kiểm tra hợp lệ rồi báo "đang được xây dựng". Điểm nối backend: `AuthCard.astro` (comment "GIAO DIỆN MẪU").
+- Khi làm backend: ưu tiên đăng nhập OAuth (Discord/Google); nếu tự lưu mật khẩu thì dùng argon2/bcrypt, HTTPS, giới hạn thử, và phải có chính sách quyền riêng tư.
+- Form: nhãn luôn hiển thị (không dùng placeholder thay nhãn), lỗi ngay dưới ô + tóm tắt `role="alert"`, tự focus ô lỗi đầu tiên, nút Hiện/Ẩn mật khẩu, `autocomplete` đúng (`email`, `current-password`, `new-password`), ô nhập cao ≥52px, `novalidate` + kiểm tra bằng JS (thông báo tiếng Việt).
+- Header: "Đăng nhập" (link) + "Đăng ký" (nút) hiển thị ở mọi cỡ màn hình.

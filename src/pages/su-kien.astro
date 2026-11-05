@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
+import EventCard from '../components/EventCard.astro';
+import { events, eventsAreSample } from '../data/content';
+---
+<Base title="Sự kiện & ưu đãi — Ngọc Rồng Online" description="Danh sách sự kiện và chương trình ưu đãi đang và sắp diễn ra trong Ngọc Rồng Online.">
+  <SiteHeader />
+  <main id="noi-dung" class="py-12 md:py-16">
+    <div class="container-x">
+      <h1 class="text-4xl font-bold md:text-5xl">Sự kiện &amp; ưu đãi</h1>
+      <p class="mt-3 max-w-2xl text-muted-foreground">Mọi chương trình đều ghi rõ thời gian và thể lệ. Xem kỹ điều kiện trước khi tham gia.</p>
+      {eventsAreSample && <p class="mt-4 rounded-btn border-2 border-dashed border-destructive px-4 py-2 text-sm font-bold text-destructive">Nội dung mẫu: thay bằng sự kiện thật trước khi đăng.</p>}
+      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {events.map((e) => <EventCard event={e} detailed />)}
+      </div>
+      <div class="mt-10 rounded-card border-2 border-foreground bg-card p-5">
+        <p class="text-lg font-bold">Cần nạp để nhận ưu đãi?</p>
+        <p class="mt-1 text-muted-foreground">Xem các gói nạp và hướng dẫn từng bước.</p>
+        <a href="/nap" class="btn btn-primary mt-4">Đến trang nạp</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

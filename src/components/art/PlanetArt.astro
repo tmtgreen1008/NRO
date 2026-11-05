@@ -1,0 +1,46 @@
+---
+interface Props { kind: 'earth' | 'namek' | 'xayda'; class?: string }
+const { kind, class: cls = '' } = Astro.props;
+const id = `pa-${kind}`;
+---
+<svg viewBox="0 0 400 220" class={`block w-full h-auto ${cls}`} aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+  {kind === 'earth' && (<>
+    <defs>
+      <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient>
+    </defs>
+    <rect width="400" height="220" fill={`url(#${id}-sky)`}/>
+    <circle cx="320" cy="56" r="26" fill="#fde68a"/><circle cx="320" cy="56" r="40" fill="#fde68a" opacity=".35"/>
+    <g fill="#fff" opacity=".95"><ellipse cx="90" cy="60" rx="38" ry="12"/><ellipse cx="116" cy="52" rx="26" ry="12"/><ellipse cx="250" cy="90" rx="30" ry="9"/><ellipse cx="270" cy="84" rx="20" ry="9"/></g>
+    <path d="M0 150 L70 90 L120 135 L190 70 L260 140 L320 105 L400 150 V220 H0Z" fill="#7dd3fc"/>
+    <path d="M0 170 Q100 120 200 160 T400 150 V220 H0Z" fill="#22c55e"/>
+    <path d="M0 190 Q120 150 240 185 T400 175 V220 H0Z" fill="#16a34a"/>
+    <g transform="translate(250 130)"><path d="M0 40 A36 36 0 0 1 72 40Z" fill="#fff7ed" stroke="#2a1708" stroke-width="3"/><rect x="26" y="22" width="20" height="18" rx="3" fill="#0369a1" stroke="#2a1708" stroke-width="3"/></g>
+  </>)}
+  {kind === 'namek' && (<>
+    <defs>
+      <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#bbf7d0"/></linearGradient>
+    </defs>
+    <rect width="400" height="220" fill={`url(#${id}-sky)`}/>
+    <circle cx="80" cy="60" r="22" fill="#ecfccb"/>
+    <path d="M0 160 Q100 140 200 158 T400 150 V220 H0Z" fill="#0ea5e9" opacity=".55"/>
+    <path d="M0 185 Q120 160 240 182 T400 172 V220 H0Z" fill="#15803d"/>
+    <g stroke="#14532d" stroke-width="3" stroke-linecap="round">
+      <g><path d="M90 190 V110" /><circle cx="90" cy="102" r="22" fill="#4ade80"/></g>
+      <g><path d="M170 195 V80" /><circle cx="170" cy="70" r="28" fill="#22c55e"/></g>
+      <g><path d="M255 192 V120" /><circle cx="255" cy="112" r="20" fill="#4ade80"/></g>
+      <g><path d="M330 196 V92" /><circle cx="330" cy="84" r="26" fill="#22c55e"/></g>
+    </g>
+  </>)}
+  {kind === 'xayda' && (<>
+    <defs>
+      <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4c1d95"/><stop offset="1" stop-color="#f472b6"/></linearGradient>
+    </defs>
+    <rect width="400" height="220" fill={`url(#${id}-sky)`}/>
+    <g fill="#fff" opacity=".85"><circle cx="40" cy="30" r="1.8"/><circle cx="130" cy="50" r="1.5"/><circle cx="210" cy="24" r="2"/><circle cx="300" cy="44" r="1.6"/><circle cx="360" cy="20" r="1.8"/></g>
+    <circle cx="300" cy="70" r="30" fill="#fde68a"/><circle cx="292" cy="62" r="6" fill="#fcd34d"/>
+    <circle cx="90" cy="80" r="14" fill="#fbcfe8"/>
+    <path d="M0 170 L50 110 L80 150 L130 90 L175 150 L230 100 L280 155 L340 115 L400 165 V220 H0Z" fill="#6d28d9"/>
+    <path d="M0 195 L60 150 L100 185 L160 140 L220 190 L290 150 L350 190 L400 170 V220 H0Z" fill="#3b0764"/>
+    <g fill="#f0abfc" stroke="#2a1708" stroke-width="2.5" stroke-linejoin="round"><path d="M70 205 L84 160 L98 205Z"/><path d="M250 208 L270 150 L290 208Z"/><path d="M330 206 L342 170 L354 206Z"/></g>
+  </>)}
+</svg>
